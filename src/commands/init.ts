@@ -118,8 +118,7 @@ async function createPpk(cwd: string) {
 
   // プラグインをパッキングする
   const result = await packer(buffer);
-  console.log(result)
 
   // private.ppk ファイルを作成する
-  fs.writeFileSync(resolve('cwd', 'private.ppk'), result.privateKey);
+  fs.writeFileSync(resolve(cwd, 'private.ppk'), result.privateKey);
 }
