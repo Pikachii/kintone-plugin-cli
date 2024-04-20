@@ -1,0 +1,44 @@
+{
+  "manifest_version": 1,
+  "version": "0.0.0",
+  "type": "APP",
+  "desktop": {
+    "js": [
+      "js/desktop.js"
+    ],
+    "css": [
+      "css/desktop.css"
+    ]
+  },
+  "mobile": {
+    "js": [
+      "js/mobile.js"
+    ],
+    "css": [
+      "css/mobile.css"
+    ]
+  },
+  "icon": "image/icon.png",
+  "config": {
+    "html": "html/config.html",
+    "js": [
+      "js/config.js"
+    ],
+    "css": [],
+    "required_params": [
+      "config"
+    ]
+  },
+  "name": {
+    "en": "",
+    "ja": ""
+  },
+  "description": {
+    "en": "",
+    "ja": ""
+  },
+  "homepage_url": {
+    "en": "",
+    "ja": ""
+  }
+}

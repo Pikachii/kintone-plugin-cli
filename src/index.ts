@@ -1,1 +1,1 @@
-console.log('Hello, world!');
+export { runMain } from './run.js';

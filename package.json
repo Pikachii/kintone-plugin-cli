@@ -24,7 +24,15 @@
     "kpc": "./bin/index.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "npm run lint",
+    "lint-staged": "lint-staged",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,js}": "npm run test"
   },
   "files": [
     "bin"
@@ -36,7 +44,15 @@
     "node": "20.12.2"
   },
   "devDependencies": {
+    "@nuxt/eslint-config": "^0.3.8",
     "@types/node": "^20.12.7",
+    "citty": "^0.1.6",
+    "consola": "^3.2.3",
+    "eslint": "^8.57.0",
+    "giget": "^1.2.3",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "pathe": "^1.1.2",
     "typescript": "^5.4.5"
   }
 }

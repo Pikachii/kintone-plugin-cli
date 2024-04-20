@@ -1,18 +1,22 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["ESNext"],
+    "noEmit": true,
     "sourceMap": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "declaration": true,
     "declarationMap": true,
     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "baseUrl": "./src",
-    "strict": true
+    "strict": true,
+    "resolveJsonModule": true,
+    "types": ["node"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*spec.ts", "node_modules"]
