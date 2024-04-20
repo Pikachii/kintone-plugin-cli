@@ -1,0 +1,5 @@
+{
+  "name": "template",
+  "defaultDir": "sample-plugin",
+  "tar": "https://codeload.github.com/pikachii/kintone-plugin-cli/tar.gz/refs/heads/template"
+}
