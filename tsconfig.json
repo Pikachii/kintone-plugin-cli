@@ -5,7 +5,6 @@
     "allowSyntheticDefaultImports": true,
     "target": "ESNext",
     "module": "ESNext",
-    "noEmit": true,
     "sourceMap": true,
     "moduleResolution": "Node",
     "declaration": true,
