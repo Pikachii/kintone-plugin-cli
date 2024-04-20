@@ -24,6 +24,7 @@
     "kpc": "./bin/index.js"
   },
   "scripts": {
+    "dev": "tsc -w",
     "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",

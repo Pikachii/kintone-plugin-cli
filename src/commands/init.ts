@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import { defineCommand } from "citty";
 import { resolve } from "pathe";
 import { consola } from 'consola';
-import { DownloadTemplateResult, downloadTemplate } from 'giget';
+import { downloadTemplate } from 'giget';
 
 const DEFAULT_REGISTRY =
   'https://raw.githubusercontent.com/pikachii/kintone-plugin-cli/main/templates'
@@ -17,13 +17,15 @@ export default defineCommand({
     dir: {
       type: 'positional',
       description: 'Project directory',
-      default: '',
+      default: 'sample-plugin',
     }
   },
   async run(ctx) {
     consola.info('Initializing project...');
     const template = await createProjectDir(ctx.args.dir);
-    editManifestJson(ctx.args.dir, template.dir);
+    const pluginDir = resolve(template.dir, 'plugin');
+    editConfigHtml(ctx.args.dir, pluginDir);
+    editManifestJson(ctx.args.dir, pluginDir);
   }
 })
 
@@ -46,8 +48,19 @@ async function createProjectDir(dir: string) {
   }    
 }
 
+function editConfigHtml(dir: string, path: string) {
+  consola.info('Editing config.html...');
+
+  // config.html を開く
+  const configHtml = fs.readFileSync(resolve(path, 'html', 'config.html'), 'utf-8');
+  
+  // title を変更する
+  const newConfigHtml = configHtml.replace('id=""', `id="${dir}-settings"`);
+  fs.writeFileSync(resolve(path, 'html', 'config.html'), newConfigHtml);
+}
+
 function editManifestJson(dir: string, path: string) {
-  consola.info('Creating manifest.json...');
+  consola.info('Editing manifest.json...');
 
   // manifest.json を開く
   const manifestFile = fs.readFileSync(resolve(path, 'manifest.json'), 'utf-8');
