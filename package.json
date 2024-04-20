@@ -45,8 +45,11 @@
     "node": "20.12.2"
   },
   "devDependencies": {
+    "@kintone/plugin-packer": "^8.0.5",
     "@nuxt/eslint-config": "^0.3.8",
+    "@types/archiver": "^6.0.2",
     "@types/node": "^20.12.7",
+    "archiver": "^7.0.1",
     "citty": "^0.1.6",
     "consola": "^3.2.3",
     "eslint": "^8.57.0",
