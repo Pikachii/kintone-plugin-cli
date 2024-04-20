@@ -1,0 +1,42 @@
+{
+  "name": "kintone-plugin-cli",
+  "version": "0.0.0",
+  "description": "kintone plugin creation CLI Experience",
+  "license": "MIT",
+  "author": "Nishida Michiya",
+  "private": true,
+  "keywords": [
+    "kintone",
+    "plugin",
+    "cli",
+    "vue",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pikachii/kintone-plugin-cli.git"
+  },
+  "type": "module",
+  "types": "./bin/index.d.ts",
+  "main": "./bin/index.js",
+  "bin": {
+    "kintone-plugin-cli": "./bin/index.js",
+    "kpc": "./bin/index.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": "^16.10.0 || >=18.0.0"
+  },
+  "volta": {
+    "node": "20.12.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  }
+}
