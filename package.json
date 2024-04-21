@@ -1,6 +1,6 @@
 {
   "name": "kintone-plugin-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "kintone plugin creation CLI Experience",
   "license": "MIT",
   "author": "Nishida Michiya",
