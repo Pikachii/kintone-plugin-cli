@@ -28,7 +28,7 @@ export default defineCommand({
       process.exit(1);
     }
 
-    const compiler = webpack({ ...config, watch: true });
+    const compiler = webpack({ ...config, mode: 'development', watch: true });
     compiler.watch({}, (err, stats) => {
       if (err || stats?.hasErrors()) {
         consola.error('Failed to upload plugin for development');
