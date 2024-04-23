@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "kpc dev"
+    "dev": "kpc dev",
+    "build": "kpc build"
   },
   "dependencies": {
     "@kintone/dts-gen": "^8.0.7",    
