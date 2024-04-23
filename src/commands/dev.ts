@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import KintonePlugin from '@kintone/webpack-plugin-kintone-plugin';
 import * as uploader from '@kintone/plugin-uploader';
 import { defineCommand } from "citty";
@@ -22,21 +23,38 @@ export default defineCommand({
       pluginZipPath: zipFilePath,
     });
     const config = defineWebpackConfig(process.cwd(), kintonePlugin);
+
+    // .envファイルが存在しない場合は作成する
+    await generateDotEnv();
     const env = (await import('dotenv')).config().parsed;
     if(!env) {
       consola.error('Failed to upload plugin for development');
       process.exit(1);
     }
 
-    const compiler = webpack({ ...config, mode: 'development', watch: true });
-    compiler.watch({}, (err, stats) => {
+    webpack({ ...config, mode: 'development', watch: true }, (err, stats) => {
       if (err || stats?.hasErrors()) {
         consola.error('Failed to upload plugin for development');
         return;
       }
       consola.success('Successfully uploaded plugin for development');
-      uploader.run(`https://${env.KINTONE_DOMAIN}`, env.KINTONE_USERNAME, env.KINTONE_PASSWORD, zipFilePath, { lang: 'ja'});
+      uploader.run(`https://${env.KINTONE_DOMAIN}.cybozu.com`, env.KINTONE_USERNAME, env.KINTONE_PASSWORD, zipFilePath, { lang: 'ja'});
     });
-
   }
-})
+});
+
+async function generateDotEnv() {
+  if (!fs.existsSync(resolve(process.cwd(), '.env'))) {
+    consola.info('Please Tell me your kintone domain, username, and password.');
+    // domain, username, passwordを入力してもらう
+    consola.info('Please input your kintone domain.');
+    const domain = await consola.prompt('Domain:');
+    consola.info('Please input your kintone username.');
+    const username = await consola.prompt('Username:');
+    consola.info('Please input your kintone password.');
+    // password は入力時に表示されないようにする
+    const password = await consola.prompt('Password:');
+    fs.writeFileSync(resolve(process.cwd(), '.env'), `KINTONE_DOMAIN=${domain}\nKINTONE_USERNAME=${username}\nKINTONE_PASSWORD=${password}`);
+    consola.success('Successfully created .env file');
+  }  
+}
