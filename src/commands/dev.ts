@@ -32,7 +32,7 @@ export default defineCommand({
       process.exit(1);
     }
 
-    webpack({ ...config, mode: 'development', watch: true }, (err, stats) => {
+    webpack({ ...config, mode: 'development', watch: true, devtool: 'eval-source-map' }, (err, stats) => {
       if (err || stats?.hasErrors()) {
         consola.error('Failed to upload plugin for development');
         return;
