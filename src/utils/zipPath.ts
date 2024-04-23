@@ -9,7 +9,7 @@ const pluginZipFilePath = async (cwd: string) => {
     .toLowerCase()
     .replace(/(\s|_)/g, '-')
     .replace(/[^a-z0-9-]+/g, '');
-  return `dist/${desc}-${manifest.version}.zip`;
+  return `${desc}-${manifest.version}.zip`;
 }
 
 export {

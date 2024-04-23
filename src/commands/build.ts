@@ -20,7 +20,7 @@ export default defineCommand({
     const kintonePlugin = new KintonePlugin({
       manifestJSONPath: resolve(process.cwd(), 'plugin/manifest.json'),
       privateKeyPath: resolve(process.cwd(), 'private.ppk'),
-      pluginZipPath: zipFilePath,
+      pluginZipPath: resolve('dist', zipFilePath),
     });
     const config = defineWebpackConfig(process.cwd(), kintonePlugin);
 
@@ -38,7 +38,7 @@ export default defineCommand({
         return;
       }
       consola.success('Successfully uploaded plugin for development');
-      uploader.run(`https://${env.KINTONE_DOMAIN}.cybozu.com`, env.KINTONE_USERNAME, env.KINTONE_PASSWORD, zipFilePath, { lang: 'ja'});
+      uploader.run(`https://${env.KINTONE_DOMAIN}.cybozu.com`, env.KINTONE_USERNAME, env.KINTONE_PASSWORD, resolve('dist', zipFilePath), { lang: 'ja'});
     });
   }
 });

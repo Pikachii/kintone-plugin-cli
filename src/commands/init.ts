@@ -4,9 +4,7 @@ import { relative, resolve } from 'pathe'
 import { consola } from 'consola';
 import { downloadTemplate } from 'giget';
 import { installDependencies } from 'nypm'
-
-import packer from '@kintone/plugin-packer';
-import archiver from 'archiver';
+import { createZip } from 'utils/createZip';
 
 const DEFAULT_REGISTRY =
   'https://raw.githubusercontent.com/pikachii/kintone-plugin-cli/main/templates'
@@ -119,30 +117,7 @@ function createPluginJsFiles(path: string) {
 async function createPpk(cwd: string) {
   consola.start('Creating private.ppk file...');
 
-  // dist フォルダを作成する
-  const distDir = resolve(cwd, 'dist');
-  fs.mkdirSync(distDir);
-
-  const archive = archiver('zip', {
-    zlib: { level: 9 } // Sets the compression level.
-  });
-
-  // dist/plugin-dev.zip ファイルを作成する
-  const output = fs.createWriteStream(resolve(distDir, 'plugin-dev.zip'));
-  archive.pipe(output);
-  archive.directory(resolve(cwd, 'plugin'), false);
-  await archive.finalize();
-
-  await new Promise((resolve, reject) => {
-    output.on("close", resolve);
-    output.on("error", reject);
-  });
-
-  // ZIPファイルをBufferに変換する
-  const buffer = fs.readFileSync(resolve(distDir, 'plugin-dev.zip'));
-
-  // プラグインをパッキングする
-  const result = await packer(buffer);
+  const result = await createZip(cwd);
 
   // private.ppk ファイルを作成する
   fs.writeFileSync(resolve(cwd, 'private.ppk'), result.privateKey);
