@@ -4,7 +4,7 @@ import { relative, resolve } from 'pathe'
 import { consola } from 'consola';
 import { downloadTemplate } from 'giget';
 import { installDependencies } from 'nypm'
-import { createZip } from '../utils/createZip';
+import { createZip } from '../utils/createZip.js';
 
 const DEFAULT_REGISTRY =
   'https://raw.githubusercontent.com/pikachii/kintone-plugin-cli/main/templates'
