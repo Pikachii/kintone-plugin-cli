@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@kintone/plugin-packer": "^8.0.5",
-    "@kintone/plugin-uploader": "^9.0.6",
+    "@kintone/plugin-uploader": "9.1.2",
     "@kintone/webpack-plugin-kintone-plugin": "^8.0.7",
     "@vue/compiler-sfc": "^3.4.23",
     "archiver": "^7.0.1",
